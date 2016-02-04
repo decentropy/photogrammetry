@@ -1,4 +1,6 @@
-### This is a clone of Python Photogrammetry Toolbox (formerly osm-bundler). The original site hosting code went missing, so I've published it for the world's enjoyment
+### This is a clone of Python Photogrammetry Toolbox (formerly osm-bundler). 
+### The original site hosting code went missing, so I've published it for the world's enjoyment
+### - Steve
 
 
 ---------------------------------------
