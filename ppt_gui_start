@@ -1,0 +1,4 @@
+#!/bin/sh
+cd /home/steve/Desktop/3D/osm-bundler/linux/
+export LD_LIBRARY_PATH="/home/steve/Desktop/3D/osm-bundler/linux/software/bundler/bin"
+python ./ppt_gui.py

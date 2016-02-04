@@ -1,0 +1,13 @@
+Python script helper to launch CMVS and PMVS2 software on Bundler result files.
+Allow to compute a dense point cloud on a series of cluster.
+Using CMVS could accelerate the reconstruction :
+ - It make cluster that split the large scene into smaller group.
+ - Each group could be computed as a dense point cloud by using PMVS2.
+ - Each cluster will use lower memory and could be processed in parallel
+
+--bundlerOutputPath=<path to the result of osm-bundler>
+	The only obligatory option
+--ClusterToCompute=<Number of cluster that CMVS should compute>
+	If infinite loop occur. Stop the process and try a different value.
+--help
+	Print help and exit

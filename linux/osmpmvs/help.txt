@@ -1,0 +1,7 @@
+Python script helper to launch PMVS software on Bundler result files.
+Allow to compute a dense point cloud.
+
+--bundlerOutputPath=<path to the result of osm-bundler>
+	The only obligatory option
+--help
+	Print help and exit

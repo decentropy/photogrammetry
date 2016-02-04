@@ -1,0 +1,17 @@
+--photos=<text file with a list of photos or a directory with photos>
+	The only obligatory option
+
+--featureExtractor=<name of feature extractor, default value is siftvlfeat>
+	Two feature extractors are supported at the moment: siftvlfeat from VLFeat library and siftlowe for David Lowe's SIFT demo implementation
+
+--help
+	Print help and exit
+
+--maxPhotoDimension=<maximum of width and height>
+	Copy of a photo will be scaled down if either width or height exceeds <maxPhotoDimension>. After scaling the maximum of width and height will be equal to <maxPhotoDimension>
+
+--photoScalingFactor=<value between 0 and 1>
+	Scale all photos to the specified scaling factor
+
+--checkCameraDatabase
+	Check if cameras from photos (see --photos flag) are in the camera database. If not, prompt the user with input to enter CCD width of each unknown camera. Then exit without any processing.
