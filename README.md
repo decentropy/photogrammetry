@@ -1,11 +1,8 @@
-### This is a clone of Python Photogrammetry Toolbox (formerly osm-bundler). 
-### The original site hosting code went missing, so I've published it for the world's enjoyment
-### - Steve
+> This is a clone of Python Photogrammetry Toolbox (formerly osm-bundler). 
+> The original site hosting code went missing, so I've published it for the world's enjoyment
+> - Steve
 
-
----------------------------------------
-WHAT IS PYTHON PHOTOGRAMMETRY TOOLBOX?
----------------------------------------
+# What Is Pythin Photogrammetry Toolbox?
 
 This project intend to create a python photogrammetry toolbox.
 It provides an easy interface to run Bundler + Dense point cloud computation via PMVS2 and CMVS (as WIP).
@@ -18,30 +15,37 @@ This project make the Sift detector from VLFeat library works with Bundler. So t
 In a near future we could think in integrate a SIFTGpu matcher into the toolchain.
 
 
----------------------------------------
-HOW TO USE IT
----------------------------------------
+# How To Use It
 
-Perform point cloud and camera calibration :
-$ RunBundler.py --photos="./examples/MyPhotos" 
+Perform point cloud and camera calibration:
 
-You could test various option... $ RunBundler.py
+```
+$ RunBundler.py --photos="./examples/MyPhotos"
+```
+
+You could test various option... `$ RunBundler.py`
 
 In a second step you could compute the dense 3D point cloud in one step if the dataset have a reasonable size.
 
-$ RunPMVS.py --bundlerOutputPath="C:/temp/PreviousLineTempDirectoryPath" 
+```
+$ RunPMVS.py --bundlerOutputPath="C:/temp/PreviousLineTempDirectoryPath"
+```
 
 If you have a lot of images, it better to use CMVS cluster computation.
 It performs dense 3D point could computation by using Cluster 3D representation of the scene :
 
+```
 $ RunCMVS.py --bundlerOutputPath="C:/temp/PreviousLineTempDirectoryPath" --ClusterToCompute ="Number of Desired Cluster".
-Example :
-$ RunCMVS.py --bundlerOutputPath="C:/temp/osm-Result" --ClusterToCompute ="10".
+```
+
+## Example
+
+```
+$ RunCMVS.py --bundlerOutputPath="C:/temp/osm-Result" --ClusterToCompute ="10"
+```
 
 
----------------------------------------
-WHAT'S INCLUDED & LICENSE
----------------------------------------
+# What's Included & License
 
 Bundler > GNU General Public License
 CMVS/PMVS2 > GNU General Public License
@@ -50,9 +54,7 @@ Python Photogrammetry Toolbox > GNU General Public License
 Python Photogrammetry Toolbox GUI > GNU General Public License
 
 
----------------------------------------
-LINKS
----------------------------------------
+# Links
 
-http://opensourcephotogrammetry.blogspot.com/2010/09/python-photogrammetry-toolbox.html
-http://code.google.com/p/osm-bundler/w/list
+- http://opensourcephotogrammetry.blogspot.com/2010/09/python-photogrammetry-toolbox.html
+- http://code.google.com/p/osm-bundler/w/list
