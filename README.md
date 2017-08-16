@@ -2,7 +2,7 @@
 > The original site hosting code went missing, so I've published it for the world's enjoyment
 > - Steve
 
-# What Is Pythin Photogrammetry Toolbox?
+# What Is Python Photogrammetry Toolbox?
 
 This project intend to create a python photogrammetry toolbox.
 It provides an easy interface to run Bundler + Dense point cloud computation via PMVS2 and CMVS (as WIP).
