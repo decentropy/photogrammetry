@@ -226,8 +226,8 @@ class OsmBundler():
                         print("CCD width %s for the cameras %s,%s has been successively inserted to the database" % (ccdWidth, exifMake, exifModel))
                         return
         else:
-        print("Camera is already inserted into the database")
-                return
+            print("Camera is already inserted into the database")
+            return
 
     def _preparePhoto(self, photoInfo):
         photo = photoInfo['basename']
@@ -369,7 +369,7 @@ class OsmBundler():
     def openResult(self):
         if sys.platform == "win32": subprocess.call(["explorer", self.workDir])
     if sys.platform == "linux2": subprocess.call(["xdg-open", self.workDir])
-        else: print("Thanks")
+    else: print("Thanks")
 
     def printHelp(self):
         helpFile = open(os.path.join(distrPath, "osmbundler/help.txt"), "r")
