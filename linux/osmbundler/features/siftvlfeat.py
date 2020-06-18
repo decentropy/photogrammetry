@@ -1,6 +1,6 @@
 import os, subprocess, gzip, logging
 
-from sift import Sift
+from .sift import Sift
 
 className = "VlfeatSift"
 class VlfeatSift(Sift):

@@ -5,13 +5,13 @@ import sqlite3
 from PIL import Image
 from PIL.ExifTags import TAGS
 
-import defaults
+from . import defaults
 
-import matching
-from matching import *
+from . import matching
+from .matching import *
 
-import features
-from features import *
+from . import features
+from .features import *
 
 # a helper function to get list of photos from a directory
 def getPhotosFromDirectory(photoDir):
@@ -86,7 +86,7 @@ class OsmBundler():
         logging.info("Working directory created: "+self.workDir)
         
         if not (os.path.isdir(self.photosArg) or os.path.isfile(self.photosArg)):
-            raise Exception, "'%s' is neither directory nor a file name" % self.photosArg
+            raise Exception("'%s' is neither directory nor a file name" % self.photosArg)
         
         # initialize mathing engine based on command line arguments
         self.initMatchingEngine()
@@ -152,7 +152,7 @@ class OsmBundler():
         if os.path.isdir(self.photosArg):
             # directory with images
             photos = getPhotosFromDirectory(self.photosArg)
-            if len(photos)<3: raise Exception, "The directory with images should contain at least 3 .jpg photos"
+            if len(photos)<3: raise Exception("The directory with images should contain at least 3 .jpg photos")
             for photo in photos:
                 photoInfo = dict(dirname=self.photosArg, basename=photo)
                 self._preparePhoto(photoInfo)
@@ -208,8 +208,8 @@ class OsmBundler():
             ccdWidth = self.getCcdWidthFromDatabase(exifMake, exifModel)
             if ccdWidth==None:
                 while True:
-                    print "Type CCD width in mm for the camera %s, %s. Press Enter to skip the camera." % (exifMake, exifModel)
-                    userInput = raw_input("CCD width in mm: ")
+                    print("Type CCD width in mm for the camera %s, %s. Press Enter to skip the camera." % (exifMake, exifModel))
+                    userInput = input("CCD width in mm: ")
                     # Enter key was pressed
                     if not userInput: return
                     try:
@@ -217,16 +217,16 @@ class OsmBundler():
                         if ccdWidth==0: raise ZeroValueException
                         self.dbCursor.execute("insert into cameras(make, model, ccd_width, source) values(?, ?, ?, 2)", (exifMake, exifModel, ccdWidth))
                     except ZeroValueException:
-                        print "\nCCD width can not be equal to zero."
+                        print("\nCCD width can not be equal to zero.")
                     except ValueError:
-                        print "\nIncorrect value for the CCD width. Please enter CCD width in mm."
+                        print("\nIncorrect value for the CCD width. Please enter CCD width in mm.")
                     except:
-                        print "\nCan not insert CCD width to the database."
+                        print("\nCan not insert CCD width to the database.")
                     else:
-                        print "CCD width %s for the cameras %s,%s has been successively inserted to the database" % (ccdWidth, exifMake, exifModel)
+                        print("CCD width %s for the cameras %s,%s has been successively inserted to the database" % (ccdWidth, exifMake, exifModel))
                         return
 	    else:
-		print "Camera is already inserted into the database"
+		print("Camera is already inserted into the database")
                 return
                 
     def _preparePhoto(self, photoInfo):
@@ -288,7 +288,7 @@ class OsmBundler():
         exif = {}
         info = photoHandle._getexif()
         if info:
-            for attr, value in info.items():
+            for attr, value in list(info.items()):
                 decodedAttr = TAGS.get(attr, attr)
                 if decodedAttr in exifAttrs: exif[decodedAttr] = value
         if 'FocalLength' in exif: exif['FocalLength'] = float(exif['FocalLength'][0])/float(exif['FocalLength'][1])
@@ -321,7 +321,7 @@ class OsmBundler():
             matchingEngineClass = getattr(matchingEngine, matchingEngine.className)
             self.matchingEngine = matchingEngineClass(os.path.join(distrPath, "software"))
         except:
-            raise Exception, "Unable initialize matching engine %s" % self.featureExtractor
+            raise Exception("Unable initialize matching engine %s" % self.featureExtractor)
 
     def initFeatureExtractor(self):
         try:
@@ -329,7 +329,7 @@ class OsmBundler():
             featureExtractorClass = getattr(featureExtractor, featureExtractor.className)
             self.featureExtractor = featureExtractorClass(os.path.join(distrPath, "software"))
         except:
-            raise Exception, "Unable initialize feature extractor %s" % self.featureExtractor
+            raise Exception("Unable initialize feature extractor %s" % self.featureExtractor)
 
     def extractFeatures(self, photo):
         # let self.featureExtractor do its job
@@ -369,11 +369,11 @@ class OsmBundler():
     def openResult(self):
         if sys.platform == "win32": subprocess.call(["explorer", self.workDir])
 	if sys.platform == "linux2": subprocess.call(["xdg-open", self.workDir])
-        else: print "Thanks"
+        else: print("Thanks")
     
     def printHelp(self):
         helpFile = open(os.path.join(distrPath, "osmbundler/help.txt"), "r")
-        print helpFile.read()
+        print(helpFile.read())
         helpFile.close()
 
     # a helper function to get CCD width from sqlite database

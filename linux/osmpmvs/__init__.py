@@ -43,7 +43,7 @@ class OsmPmvs():
         logging.info("Working directory created: "+self.workDir)
         
         if not (os.path.isdir(self.bundleOutArg) or os.path.isfile(self.bundleOutArg)):
-            raise Exception, "'%s' is neither directory nor a file name" % self.bundleOutArg
+            raise Exception("'%s' is neither directory nor a file name" % self.bundleOutArg)
 
     def parseCommandLineFlags(self):
         try:
@@ -71,21 +71,21 @@ class OsmPmvs():
         os.mkdir("pmvs/models")
         
         #$BASE_PATH/bin32/Bundle2PMVS.exe list.txt  bundle/bundle.out
-        print "Running Bundle2PMVS to generate geometry and converted camera file"
+        print("Running Bundle2PMVS to generate geometry and converted camera file")
         subprocess.call([bundler2PmvsExecutable, "list.txt", "bundle/bundle.out"])
 		
         # Apply radial undistortion to the images
-        print "Running RadialUndistort to undistort input images"
+        print("Running RadialUndistort to undistort input images")
         subprocess.call([RadialUndistordExecutable, "list.txt", "bundle/bundle.out", "pmvs"])
 		
-        print "Running Bundle2Vis to generate vis.dat"
+        print("Running Bundle2Vis to generate vis.dat")
         subprocess.call([Bundle2VisExecutable, "pmvs/bundle.rd.out", "pmvs/vis.dat"])
 
         os.chdir(os.path.join(self.workDir,"pmvs"))
         #Rename all the files to the correct name
         undistortTextFile = open("list.rd.txt", "r")
         imagesStrings = undistortTextFile.readlines()
-        print "Move files in the correct directory"
+        print("Move files in the correct directory")
         cpt = 0
         for imageString in imagesStrings:
           image = imageString.split(".")
@@ -102,12 +102,12 @@ class OsmPmvs():
         logging.info("Finished!")
         
     def doPMVS(self):
-        print "Run PMVS2 : %s " % pmvsExecutable
+        print("Run PMVS2 : %s " % pmvsExecutable)
         subprocess.call([pmvsExecutable, "./", "pmvs_options.txt"])
-	print "Finished! See the results in the '%s' directory" % self.workDir
+	print("Finished! See the results in the '%s' directory" % self.workDir)
 	if sys.platform == "win32": subprocess.call(["explorer", self.workDir])
 	if sys.platform == "linux2": subprocess.call(["xdg-open", self.workDir])
-        else: print "Thanks"
+        else: print("Thanks")
 
     def printHelpExit(self):
         self.printHelp()
@@ -115,11 +115,11 @@ class OsmPmvs():
     
     def openResult(self):
         if sys.platform == "win32": subprocess.call(["explorer", self.workDir])
-        else: print "See the results in the '%s' directory" % self.workDir
+        else: print("See the results in the '%s' directory" % self.workDir)
     
     def printHelp(self):
-        print "Error"
+        print("Error")
         helpFile = open(os.path.join(distrPath, "osmpmvs/help.txt"), "r")
-        print helpFile.read()
+        print(helpFile.read())
         helpFile.close()
 
