@@ -401,7 +401,7 @@ class PPTGUI(QtWidgets.QWidget):
         command = self.text2.displayText()
         proc = subprocess.Popen((str(command)), shell=True, stdout=subprocess.PIPE)
         output = proc.stdout.read()
-        self.output1.append(str(output))
+        self.output1.append(output.decode(errors='replace'))
 
 # help button 1 - select directory
     def on_help1_clicked(self):
@@ -467,7 +467,7 @@ class PPTGUI(QtWidgets.QWidget):
         command = self.text6.displayText()
         proc = subprocess.Popen((str(command)), shell=True, stdout=subprocess.PIPE)
         output = proc.stdout.read()
-        self.output2.append(str(output))
+        self.output2.append(output.decode(errors='replace'))
 
 # open pmvs
     def openpmvs(self, text):
@@ -494,7 +494,7 @@ class PPTGUI(QtWidgets.QWidget):
         command = self.text8.displayText()
         proc = subprocess.Popen((str(command)), shell=True, stdout=subprocess.PIPE)
         output = proc.stdout.read()
-        self.output3.append(str(output))
+        self.output3.append(output.decode(errors='replace'))
 
 # select directory with photos (Camera Database)
     def showDialog4(self):
