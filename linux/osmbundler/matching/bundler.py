@@ -1,6 +1,6 @@
 import sys,os,subprocess,logging
 
-from engine import MatchingEngine
+from .engine import MatchingEngine
 
 className = "BundlerMatching"
 class BundlerMatching(MatchingEngine):

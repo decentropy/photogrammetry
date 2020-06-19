@@ -1,10 +1,10 @@
 import os, subprocess, gzip, logging
 
-from sift import Sift
+from .sift import Sift
 
 className = "VlfeatSift"
 class VlfeatSift(Sift):
-    
+
     win32Executable = "vlfeat/bin/w32/sift.exe"
     linuxExecutable = "vlfeat/bin/glx/sift"
 
@@ -20,16 +20,14 @@ class VlfeatSift(Sift):
         featureStrings = vlfeatTextFile.readlines()
         numFeatures = len(featureStrings)
         # write header
-        loweGzipFile.write("%s 128\n" % numFeatures)
+        loweGzipFile.write(("%s 128\n" % numFeatures).encode())
         for featureString in featureStrings:
             features = featureString.split()
             # swap features[0] and features[1]
-            tmp = features[0]
-            features[0] = features[1]
-            features[1] = tmp
+            features[1], features[0] = features[0:2]
             i1 = 0
             for i2 in (4,24,44,64,84,104,124,132):
-                loweGzipFile.write("%s\n" % " ".join(features[i1:i2]))
+                loweGzipFile.write(("%s\n" % " ".join(features[i1:i2])).encode())
                 i1 = i2
         loweGzipFile.close()
         vlfeatTextFile.close()

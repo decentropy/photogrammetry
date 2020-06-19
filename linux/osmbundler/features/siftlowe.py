@@ -1,6 +1,6 @@
 import os, subprocess, gzip
 
-from sift import Sift
+from .sift import Sift
 
 className = "LoweSift"
 class LoweSift(Sift):
