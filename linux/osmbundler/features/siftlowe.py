@@ -1,6 +1,6 @@
 import os, subprocess, gzip
 
-from sift import Sift
+from .sift import Sift
 
 className = "LoweSift"
 class LoweSift(Sift):
@@ -19,7 +19,7 @@ class LoweSift(Sift):
         siftTextFile.close()
         # gzip SIFT file and remove it
         siftTextFile = open("%s.key" % photo, "r")
-        siftGzipFile = gzip.open("%s.key.gz" % photo, "wb")
+        siftGzipFile = gzip.open("%s.key.gz" % photo, "wt")
         siftGzipFile.writelines(siftTextFile)
         siftGzipFile.close()
         siftTextFile.close()
