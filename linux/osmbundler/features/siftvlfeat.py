@@ -1,6 +1,6 @@
 import os, subprocess, gzip, logging
 
-from sift import Sift
+from .sift import Sift
 
 className = "VlfeatSift"
 class VlfeatSift(Sift):
@@ -16,7 +16,7 @@ class VlfeatSift(Sift):
         subprocess.call([self.executable, "%s.jpg.pgm" % photo, "-o", "%s.key" % photo])
         # perform conversion to David Lowe's format
         vlfeatTextFile = open("%s.key" % photo, "r")
-        loweGzipFile = gzip.open("%s.key.gz" % photo, "wb")
+        loweGzipFile = gzip.open("%s.key.gz" % photo, "wt")
         featureStrings = vlfeatTextFile.readlines()
         numFeatures = len(featureStrings)
         # write header

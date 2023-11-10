@@ -1,4 +1,4 @@
-from engine import MatchingEngine
+from .engine import MatchingEngine
 
 className = "ManualMatching"
 class ManualMatching(MatchingEngine):

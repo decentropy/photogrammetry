@@ -1,6 +1,6 @@
 import sys, os, logging
 
-from extractor import FeatureExtractor
+from .extractor import FeatureExtractor
 
 class Sift(FeatureExtractor):
     
